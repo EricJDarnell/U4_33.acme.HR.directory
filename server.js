@@ -41,6 +41,8 @@ app.post('/api/departments', async (req, res, next) => {
           values ($1)
           returning *
         `;
+        const response = await client.query(SQL, [req.body.name]);
+        res.send(response.rows[0]);
     } catch (ex) {
         next(ex);
     }
